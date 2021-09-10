@@ -54,7 +54,11 @@ class _HomePageState extends State<HomePage> {
                                   padding: EdgeInsets.all(5),
                                   child: ElevatedButton(
                                     child: Icon(Icons.arrow_drop_up),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      setState(() {
+                                        toUp();
+                                      });
+                                    },
                                   ),
                                 ),
                               ),
@@ -63,7 +67,11 @@ class _HomePageState extends State<HomePage> {
                                   padding: EdgeInsets.all(5),
                                   child: ElevatedButton(
                                     child: Icon(Icons.arrow_drop_down),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      setState(() {
+                                        toDown();
+                                      });
+                                    },
                                   ),
                                 ),
                               ),
@@ -76,7 +84,11 @@ class _HomePageState extends State<HomePage> {
                           padding: EdgeInsets.all(5),
                           child: ElevatedButton(
                             child: Icon(Icons.arrow_right_outlined),
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                toRight();
+                              });
+                            },
                           ),
                         ),
                       )
@@ -121,6 +133,7 @@ class _MainWidgetState extends State<MainWidget> {
   }
 }
 
+// ignore: must_be_immutable
 class Cubs extends StatelessWidget {
   var stileForText = TextStyle(color: Colors.white, fontSize: 28);
   int i;
@@ -144,6 +157,7 @@ class Cubs extends StatelessWidget {
 
 //har bitta kubchani qaytaradigan funikiya
 
+  // ignore: non_constant_identifier_names
   Widget CubsWidget(int j) {
     String number;
     if (matrix[i][j] != 0) {
