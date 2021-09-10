@@ -19,7 +19,130 @@ class _HomePageState extends State<HomePage> {
             children: [
               Expanded(
                 flex: 2,
-                child: HeadWidgets(),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 5,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.yellow[700],
+                        ),
+                        margin: EdgeInsets.all(5),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            '2048',
+                            style: TextStyle(fontSize: 38, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.black87,
+                                ),
+                                margin: EdgeInsets.all(5),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Score\n 100',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 25),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.orange[800],
+                                ),
+                                margin: EdgeInsets.all(5),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: TextButton(
+                                    child: Text(
+                                      'NEW',
+                                      style: TextStyle(
+                                          fontSize: 25, color: Colors.white),
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        matrix = [
+                                          [0, 0, 0, 0],
+                                          [0, 0, 4, 0],
+                                          [2, 0, 0, 0],
+                                          [0, 0, 0, 0]
+                                        ];
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.black87,
+                                ),
+                                margin: EdgeInsets.all(5),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Score\n 100',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.orange[800],
+                                ),
+                                margin: EdgeInsets.all(5),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: TextButton(
+                                    child: Text(
+                                      'UNDO',
+                                      style: TextStyle(
+                                          fontSize: 25, color: Colors.white),
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               Expanded(
                 flex: 6,
@@ -135,7 +258,6 @@ class _MainWidgetState extends State<MainWidget> {
 
 // ignore: must_be_immutable
 class Cubs extends StatelessWidget {
-  var stileForText = TextStyle(color: Colors.white, fontSize: 28);
   int i;
   Cubs({Key? key, required this.i}) : super(key: key);
 
@@ -168,145 +290,183 @@ class Cubs extends StatelessWidget {
     return Container(
       margin: EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: Colors.brown[300],
+        color: getColor(j),
         borderRadius: BorderRadius.circular(5),
       ),
       child: Align(
         alignment: Alignment.center,
         child: Text(
           number,
-          style: stileForText,
+          style: TextStyle(
+            color: matrix[i][j] == 2 || matrix[i][j] == 4
+                ? Colors.black
+                : Colors.white,
+            fontSize: 28,
+          ),
         ),
       ),
     );
+  }
+
+  getColor(int j) {
+    switch (matrix[i][j]) {
+      case 2:
+        return Colors.amber[300];
+      case 4:
+        return Colors.amber[600];
+      case 8:
+        return Colors.orange;
+      case 16:
+        return Colors.orange[800];
+      case 32:
+        return Colors.orange[900];
+      case 64:
+        return Colors.red;
+      case 128:
+        return Colors.red[700];
+      case 256:
+        return Colors.red[900];
+      case 512:
+        return Colors.deepOrangeAccent;
+      case 1024:
+        return Colors.deepOrangeAccent[400];
+      case 2048:
+        return Colors.deepOrange;
+      case 4096:
+        return Colors.deepOrange[700];
+      case 8192:
+        return Colors.deepOrange[900];
+      default:
+        return Colors.brown[300];
+    }
   }
 }
 
 //Begin HeadWidget
 
-class HeadWidgets extends StatefulWidget {
-  const HeadWidgets({
-    Key? key,
-  }) : super(key: key);
+// class HeadWidgets extends StatefulWidget {
+//   const HeadWidgets({
+//     Key? key,
+//   }) : super(key: key);
 
-  @override
-  _HeadWidgetsState createState() => _HeadWidgetsState();
-}
+//   @override
+//   _HeadWidgetsState createState() => _HeadWidgetsState();
+// }
 
-class _HeadWidgetsState extends State<HeadWidgets> {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          flex: 5,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.yellow[700],
-            ),
-            margin: EdgeInsets.all(5),
-            child: Align(
-              alignment: Alignment.center,
-              child: Text(
-                '2048',
-                style: TextStyle(fontSize: 38, color: Colors.white),
-              ),
-            ),
-          ),
-        ),
-        Expanded(
-          flex: 3,
-          child: Container(
-            child: Column(
-              children: [
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.black87,
-                    ),
-                    margin: EdgeInsets.all(5),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Score\n 100',
-                        style: TextStyle(color: Colors.white, fontSize: 25),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.orange[800],
-                    ),
-                    margin: EdgeInsets.all(5),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: TextButton(
-                        child: Text(
-                          'NEW',
-                          style: TextStyle(fontSize: 25, color: Colors.white),
-                        ),
-                        onPressed: () {},
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Expanded(
-          flex: 3,
-          child: Container(
-            child: Column(
-              children: [
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.black87,
-                    ),
-                    margin: EdgeInsets.all(5),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Score\n 100',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.orange[800],
-                    ),
-                    margin: EdgeInsets.all(5),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: TextButton(
-                        child: Text(
-                          'UNDO',
-                          style: TextStyle(fontSize: 25, color: Colors.white),
-                        ),
-                        onPressed: () {},
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
+// class _HeadWidgetsState extends State<HeadWidgets> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       children: [
+//         Expanded(
+//           flex: 5,
+//           child: Container(
+//             decoration: BoxDecoration(
+//               borderRadius: BorderRadius.circular(10),
+//               color: Colors.yellow[700],
+//             ),
+//             margin: EdgeInsets.all(5),
+//             child: Align(
+//               alignment: Alignment.center,
+//               child: Text(
+//                 '2048',
+//                 style: TextStyle(fontSize: 38, color: Colors.white),
+//               ),
+//             ),
+//           ),
+//         ),
+//         Expanded(
+//           flex: 3,
+//           child: Container(
+//             child: Column(
+//               children: [
+//                 Expanded(
+//                   child: Container(
+//                     decoration: BoxDecoration(
+//                       borderRadius: BorderRadius.circular(5),
+//                       color: Colors.black87,
+//                     ),
+//                     margin: EdgeInsets.all(5),
+//                     child: Align(
+//                       alignment: Alignment.center,
+//                       child: Text(
+//                         'Score\n 100',
+//                         style: TextStyle(color: Colors.white, fontSize: 25),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//                 Expanded(
+//                   child: Container(
+//                     decoration: BoxDecoration(
+//                       borderRadius: BorderRadius.circular(5),
+//                       color: Colors.orange[800],
+//                     ),
+//                     margin: EdgeInsets.all(5),
+//                     child: Align(
+//                       alignment: Alignment.center,
+//                       child: TextButton(
+//                         child: Text(
+//                           'NEW',
+//                           style: TextStyle(fontSize: 25, color: Colors.white),
+//                         ),
+//                         onPressed: () {},
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//         Expanded(
+//           flex: 3,
+//           child: Container(
+//             child: Column(
+//               children: [
+//                 Expanded(
+//                   child: Container(
+//                     decoration: BoxDecoration(
+//                       borderRadius: BorderRadius.circular(5),
+//                       color: Colors.black87,
+//                     ),
+//                     margin: EdgeInsets.all(5),
+//                     child: Align(
+//                       alignment: Alignment.center,
+//                       child: Text(
+//                         'Score\n 100',
+//                         style: TextStyle(
+//                           color: Colors.white,
+//                           fontSize: 25,
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//                 Expanded(
+//                   child: Container(
+//                     decoration: BoxDecoration(
+//                       borderRadius: BorderRadius.circular(5),
+//                       color: Colors.orange[800],
+//                     ),
+//                     margin: EdgeInsets.all(5),
+//                     child: Align(
+//                       alignment: Alignment.center,
+//                       child: TextButton(
+//                         child: Text(
+//                           'UNDO',
+//                           style: TextStyle(fontSize: 25, color: Colors.white),
+//                         ),
+//                         onPressed: () {},
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }

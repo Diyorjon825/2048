@@ -1,10 +1,10 @@
 import 'dart:math';
 
 List<List<int>> matrix = [
-  [0, 8, 0, 4],
-  [4, 0, 4, 0],
-  [8, 8, 0, 16],
-  [0, 0, 4, 0]
+  [0, 0, 0, 0],
+  [0, 0, 4, 0],
+  [2, 0, 0, 0],
+  [0, 0, 0, 0]
 ];
 void toLeft() {
   for (int i = 0; i < 4; i++) {
@@ -143,12 +143,12 @@ void creatRandom() {
       if (matrix[i][j] == 0) a++;
     }
   }
-  var r = (Random().nextInt(a - 2)).abs();
+  var r = (Random().nextInt(a)).abs();
   for (int i = 0; i < 4; i++) {
     for (int j = 0; j < 4; j++) {
       if (matrix[i][j] == 0) {
         a--;
-        if (a == r + 1) {
+        if (a == r) {
           int ran = (Random().nextInt(1)).abs() + 1;
           matrix[i][j] = ran * 2;
         }
