@@ -145,80 +145,116 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Expanded(
-                flex: 6,
-                child: MainWidget(),
+                flex: 1,
+                child: Container(),
               ),
               Expanded(
-                flex: 2,
-                child: Container(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          padding: EdgeInsets.all(5),
-                          child: ElevatedButton(
-                            child: Icon(Icons.arrow_left_outlined),
-                            onPressed: () {
-                              setState(() {
-                                toLeft();
-                              });
-                            },
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  padding: EdgeInsets.all(5),
-                                  child: ElevatedButton(
-                                    child: Icon(Icons.arrow_drop_up),
-                                    onPressed: () {
-                                      setState(() {
-                                        toUp();
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  padding: EdgeInsets.all(5),
-                                  child: ElevatedButton(
-                                    child: Icon(Icons.arrow_drop_down),
-                                    onPressed: () {
-                                      setState(() {
-                                        toDown();
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          padding: EdgeInsets.all(5),
-                          child: ElevatedButton(
-                            child: Icon(Icons.arrow_right_outlined),
-                            onPressed: () {
-                              setState(() {
-                                toRight();
-                              });
-                            },
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                flex: 6,
+                child: GestureDetector(
+                  onHorizontalDragEnd: (DragEndDetails details) {
+                    if (details.primaryVelocity! > 0) {
+                      // User swiped Left
+                      setState(() {
+                        toRight();
+                      });
+                    } else if (details.primaryVelocity! < 0) {
+                      setState(() {
+                        toLeft();
+                      });
+                      // User swiped Right
+                    }
+                  },
+                  onVerticalDragEnd: (DragEndDetails details) {
+                    if (details.primaryVelocity! > 0) {
+                      // User swiped Left
+                      setState(() {
+                        toDown();
+                      });
+                    } else if (details.primaryVelocity! < 0) {
+                      setState(() {
+                        toUp();
+                      });
+                      // User swiped Right
+                    }
+                  },
+                  child: MainWidget(),
                 ),
-              )
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(),
+              ),
+              // Expanded(
+              //   flex: 2,
+              //   child: Container(
+              //     child: Row(
+              //       crossAxisAlignment: CrossAxisAlignment.stretch,
+              //       children: [
+              //         Expanded(
+              //           child: Container(
+              //             padding: EdgeInsets.all(5),
+              //             child: ElevatedButton(
+              //               child: Icon(Icons.arrow_left_outlined),
+              //               onPressed: () {
+              //                 setState(() {
+              //                   toLeft();
+              //                 });
+              //               },
+              //             ),
+              //           ),
+              //         ),
+              //         Expanded(
+              //           child: Container(
+              //             child: Column(
+              //               crossAxisAlignment: CrossAxisAlignment.stretch,
+              //               children: [
+              //                 Expanded(
+              //                   child: Container(
+              //                     padding: EdgeInsets.all(5),
+              //                     child: ElevatedButton(
+              //                       child: Icon(Icons.arrow_drop_up),
+              //                       onPressed: () {
+              //                         setState(() {
+              //                           toUp();
+              //                         });
+              //                       },
+              //                     ),
+              //                   ),
+              //                 ),
+              //                 Expanded(
+              //                   child: Container(
+              //                     padding: EdgeInsets.all(5),
+              //                     child: ElevatedButton(
+              //                       child: Icon(Icons.arrow_drop_down),
+              //                       onPressed: () {
+              //                         setState(() {
+              //                           toDown();
+              //                         });
+              //                       },
+              //                     ),
+              //                   ),
+              //                 ),
+              //               ],
+              //             ),
+              //           ),
+              //         ),
+              //         Expanded(
+              //           child: Container(
+              //             padding: EdgeInsets.all(5),
+              //             child: ElevatedButton(
+              //               child: Icon(Icons.arrow_right_outlined),
+              //               onPressed: () {
+              //                 setState(() {
+              //                   toRight();
+              //                 });
+              //               },
+              //             ),
+              //           ),
+              //         )
+              //       ],
+              //     ),
+              //   ),
+              // )
             ],
           ),
         ),
@@ -341,132 +377,3 @@ class Cubs extends StatelessWidget {
     }
   }
 }
-
-//Begin HeadWidget
-
-// class HeadWidgets extends StatefulWidget {
-//   const HeadWidgets({
-//     Key? key,
-//   }) : super(key: key);
-
-//   @override
-//   _HeadWidgetsState createState() => _HeadWidgetsState();
-// }
-
-// class _HeadWidgetsState extends State<HeadWidgets> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       children: [
-//         Expanded(
-//           flex: 5,
-//           child: Container(
-//             decoration: BoxDecoration(
-//               borderRadius: BorderRadius.circular(10),
-//               color: Colors.yellow[700],
-//             ),
-//             margin: EdgeInsets.all(5),
-//             child: Align(
-//               alignment: Alignment.center,
-//               child: Text(
-//                 '2048',
-//                 style: TextStyle(fontSize: 38, color: Colors.white),
-//               ),
-//             ),
-//           ),
-//         ),
-//         Expanded(
-//           flex: 3,
-//           child: Container(
-//             child: Column(
-//               children: [
-//                 Expanded(
-//                   child: Container(
-//                     decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(5),
-//                       color: Colors.black87,
-//                     ),
-//                     margin: EdgeInsets.all(5),
-//                     child: Align(
-//                       alignment: Alignment.center,
-//                       child: Text(
-//                         'Score\n 100',
-//                         style: TextStyle(color: Colors.white, fontSize: 25),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//                 Expanded(
-//                   child: Container(
-//                     decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(5),
-//                       color: Colors.orange[800],
-//                     ),
-//                     margin: EdgeInsets.all(5),
-//                     child: Align(
-//                       alignment: Alignment.center,
-//                       child: TextButton(
-//                         child: Text(
-//                           'NEW',
-//                           style: TextStyle(fontSize: 25, color: Colors.white),
-//                         ),
-//                         onPressed: () {},
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//         Expanded(
-//           flex: 3,
-//           child: Container(
-//             child: Column(
-//               children: [
-//                 Expanded(
-//                   child: Container(
-//                     decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(5),
-//                       color: Colors.black87,
-//                     ),
-//                     margin: EdgeInsets.all(5),
-//                     child: Align(
-//                       alignment: Alignment.center,
-//                       child: Text(
-//                         'Score\n 100',
-//                         style: TextStyle(
-//                           color: Colors.white,
-//                           fontSize: 25,
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//                 Expanded(
-//                   child: Container(
-//                     decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(5),
-//                       color: Colors.orange[800],
-//                     ),
-//                     margin: EdgeInsets.all(5),
-//                     child: Align(
-//                       alignment: Alignment.center,
-//                       child: TextButton(
-//                         child: Text(
-//                           'UNDO',
-//                           style: TextStyle(fontSize: 25, color: Colors.white),
-//                         ),
-//                         onPressed: () {},
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }

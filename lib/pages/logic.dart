@@ -156,3 +156,20 @@ void creatRandom() {
     }
   }
 }
+
+void check() {
+  int a = 0;
+  for (int i = 0; i < 4; i++) {
+    if (matrix[i].contains(0)) {
+      a++;
+    }
+  }
+  if (a == 0) {
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        if (matrix[i][j] == matrix[i][j + 1] ||
+            matrix[i][j] == matrix[i + 1][j]) {}
+      }
+    }
+  }
+}
